@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewPropertyRequest;
 use App\Models\PropertyModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class PropertyController extends Controller
 {
@@ -20,15 +24,29 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view('newProperty');
+        return view('create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NewPropertyRequest $request)
     {
-        //
+//        PropertyModel::create($request->validated());
+
+        $gd = new Driver();
+        $manager = new ImageManager($gd);
+
+        foreach($request->file('images') as $file)
+
+        $name = uniqid().".webp";
+
+
+        $image = $manager->read($file)->toWebp(90);
+
+        Storage::disk('public')->put("images/property_images/$name", (string) $image);
+
+
     }
 
     /**
