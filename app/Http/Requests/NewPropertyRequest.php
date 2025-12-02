@@ -24,7 +24,7 @@ class NewPropertyRequest extends FormRequest
             'construction_year' => 'nullable|integer|min:1800|max:2100',
             'parking'           => 'string',
             'furnished'         => 'string',
-            'images'            => 'required|array',
+            'images'            => 'array',
             'images.*'          => 'image|mimes:jpg,jpeg,png,webp|max:10240',
             'user_id'           => 'required|integer|exists:users,id|min:1'
 
