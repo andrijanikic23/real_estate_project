@@ -27,4 +27,10 @@ class PropertyModel extends Model
     ];
 
     const PROPERTY_APARTMENT = 'apartment';
+
+
+    public function images()
+    {
+        return $this->hasMany(PropertyImageModel::class, 'property_id', 'id');
+    }
 }
