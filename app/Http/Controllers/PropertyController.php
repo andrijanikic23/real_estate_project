@@ -17,9 +17,11 @@ class PropertyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PropertyModel $properties)
     {
-        //
+        $properties = PropertyModel::with('images')->get();
+
+        return view('welcome', compact('properties'));
     }
 
     /**
@@ -44,7 +46,7 @@ class PropertyController extends Controller
 
             $name = $property->id."/".$name;
 
-            $imageProperty = PropertyImageModel::create([
+            PropertyImageModel::create([
                 'property_id' => $property->id,
                 'path' => $name
             ]);
@@ -59,9 +61,9 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PropertyModel $propertyModel)
+    public function show(PropertyModel $properties)
     {
-        //
+
     }
 
     /**
