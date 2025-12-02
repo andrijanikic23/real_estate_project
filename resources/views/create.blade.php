@@ -136,8 +136,8 @@
 
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <select class="form-select" name="heating_type" required>
-                        <option value="" disabled selected>Tip grejanja</option>
+                    <select class="form-select" name="heating_type">
+                        <option disabled selected>Tip grejanja</option>
                         <option value="central">Centralno grejanje</option>
                         <option value="ta">TA</option>
                         <option value="gas">Gas</option>
