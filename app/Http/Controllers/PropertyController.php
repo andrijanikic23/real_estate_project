@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewPropertyRequest;
+use App\Models\PropertyImageModel;
 use App\Models\PropertyModel;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Drivers\Gd\Driver;
-use Intervention\Image\ImageManager;
+
 
 class PropertyController extends Controller
 {
+
+    use ImageUploadTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -32,19 +35,23 @@ class PropertyController extends Controller
      */
     public function store(NewPropertyRequest $request)
     {
-//        PropertyModel::create($request->validated());
+        $property = PropertyModel::create($request->validated());
 
-        $gd = new Driver();
-        $manager = new ImageManager($gd);
 
         foreach($request->file('images') as $file)
+        {
+            $name = $this->uploadImage($file, "property_images/$property->id");
 
-        $name = uniqid().".webp";
+            $name = $property->id."/".$name;
 
+            $imageProperty = PropertyImageModel::create([
+                'property_id' => $property->id,
+                'path' => $name
+            ]);
 
-        $image = $manager->read($file)->toWebp(90);
+        }
 
-        Storage::disk('public')->put("images/property_images/$name", (string) $image);
+        return redirect()->back()->with('success', 'Novi oglas uspešno napravljen!');
 
 
     }
