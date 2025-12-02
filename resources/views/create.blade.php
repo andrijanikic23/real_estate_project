@@ -1,8 +1,8 @@
+@php use Illuminate\Support\Facades\Session; @endphp
 
 @extends('layout')
 
 @section('content')
-
 
 
     <!DOCTYPE html>
@@ -21,7 +21,7 @@
         .card {
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
@@ -34,6 +34,11 @@
 
 <div class="container my-5">
     <div class="card">
+
+        @if(Session::has('success'))
+            <h5 class="text-success">{{ Session::get('success') }}</h5>
+        @endif
+
         <h2>Dodajte oglas</h2>
         <form action="{{ route('properties.store') }}" enctype="multipart/form-data" method="POST">
 
@@ -65,7 +70,8 @@
             </div>
 
             <div class="mb-3">
-                <textarea class="form-control" name="description" placeholder="Opis oglasa" rows="3" required></textarea>
+                <textarea class="form-control" name="description" placeholder="Opis oglasa" rows="3"
+                          required></textarea>
                 @if($errors->has('description'))
                     <div>{{ $errors->first('description') }}</div>
                 @endif
@@ -80,7 +86,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="municipality" placeholder="Opština" maxlength="32" required>
+                    <input type="text" class="form-control" name="municipality" placeholder="Opština" maxlength="32"
+                           required>
                     @if($errors->has('municipality'))
                         <div>{{ $errors->first('municipality') }}</div>
                     @endif
@@ -96,14 +103,16 @@
 
             <div class="row mb-3">
                 <div class="col-md-3">
-                    <input type="number" class="form-control" name="price" placeholder="Cena" step="0.01" min="0" required>
+                    <input type="number" class="form-control" name="price" placeholder="Cena &euro;" step="0.01" min="0"
+                           required>
                     @if($errors->has('price'))
                         <div>{{ $errors->first('price') }}</div>
                     @endif
                 </div>
 
                 <div class="col-md-3">
-                    <input type="number" class="form-control" name="area" placeholder="Površina (m²)" step="0.1" min="0" required>
+                    <input type="number" class="form-control" name="area" placeholder="Površina (m²)" step="0.1" min="0"
+                           required>
                     @if($errors->has('area'))
                         <div>{{ $errors->first('area') }}</div>
                     @endif
@@ -117,7 +126,8 @@
                 </div>
 
                 <div class="col-md-3">
-                    <input type="number" class="form-control" name="total_floors" placeholder="Spratnost objekta" min="0">
+                    <input type="number" class="form-control" name="total_floors" placeholder="Spratnost objekta"
+                           min="0">
                     @if($errors->has('total_floors'))
                         <div>{{ $errors->first('total_floors') }}</div>
                     @endif
@@ -140,7 +150,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    <input type="number" class="form-control" name="construction_year" placeholder="Construction Year" min="1800" max="2100">
+                    <input type="number" class="form-control" name="construction_year" placeholder="Godina izgradnje"
+                           min="1800" max="2100">
                     @if($errors->has('construction_year'))
                         <div>{{ $errors->first('construction_year') }}</div>
                     @endif
@@ -173,8 +184,8 @@
                     <div>{{ $errors->first('images.*') }}</div>
                 @endif
             </div>
-
             <input type="hidden" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::user()->id }}">
+
             @if($errors->has('user_id'))
                 <div>{{ $errors->first('user_id') }}</div>
             @endif
@@ -186,10 +197,6 @@
         </form>
     </div>
 </div>
-
-
-
-
 
 
 @endsection
