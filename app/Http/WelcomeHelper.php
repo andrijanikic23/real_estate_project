@@ -41,4 +41,15 @@ class WelcomeHelper
             return "namešten";
         }
     }
+
+    public static function pricePerSquare($area, $price)
+    {
+        $pricePerSquare = $price / $area;
+
+        $pricePerSquareConverted = (float) $pricePerSquare;
+
+        $suitableFormat = number_format($pricePerSquareConverted, 0, ',', '.');
+
+        return $suitableFormat;
+    }
 }

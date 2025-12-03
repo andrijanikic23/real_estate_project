@@ -55,7 +55,8 @@
                                     </p>
                                     <p class="card-text mb-1">
                                         {{ WelcomeHelper::propertyType($property->property_type) }} |
-                                        {{ $property->area }} m&sup2; |
+                                        {{ number_format($property->area, 0, ',', '.') }}m&sup2; |
+                                        {{ WelcomeHelper::pricePerSquare($property->area, $property->price) }}&euro;/m&sup2; |
                                         {{ $property->floor }}/{{ $property->total_floors }} sprat
                                     </p>
                                     <p class="card-text">
@@ -66,7 +67,7 @@
                                 {{-- Price --}}
                                 <div class="mt-3 mb-2">
                                     <div class="bg-success text-white text-center py-2 rounded">
-                                        <h5 class="mb-0">{{ $property->price }} &euro;</h5>
+                                        <h5 class="mb-0">{{ number_format($property->price, 0, ',', '.') }} &euro;</h5>
                                     </div>
                                 </div>
 
