@@ -16,6 +16,8 @@ class PropertyModel extends Model
         'address',
         'price',
         'area',
+        'bedroom_number',
+        'commercial_type',
         'floor',
         'total_floors',
         'property_type',
