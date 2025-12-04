@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewPropertyRequest;
+use App\Http\Requests\PropertySearchRequest;
 use App\Models\PropertyImageModel;
 use App\Models\PropertyModel;
 use App\Traits\ImageUploadTrait;
@@ -17,7 +18,7 @@ class PropertyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(PropertyModel $properties)
+    public function index()
     {
         $properties = PropertyModel::with('images')->get();
 
@@ -37,7 +38,13 @@ class PropertyController extends Controller
      */
     public function store(NewPropertyRequest $request)
     {
-        $property = PropertyModel::create($request->validated());
+
+        $pricePerSquareMeter = $request->price / $request->area;
+
+        $property = PropertyModel::create([
+            ...$request->validated(),
+            'price_per_square_meter' => $pricePerSquareMeter,
+        ]);
 
 
         foreach($request->file('images') as $file)
@@ -56,6 +63,62 @@ class PropertyController extends Controller
         return redirect()->back()->with('success', 'Novi oglas uspešno napravljen!');
 
 
+    }
+
+    public function filter(PropertySearchRequest $request)
+    {
+        $isNull = true;
+
+        foreach($request->validated() as $key => $value) {
+            if($value == null)
+            {
+                continue;
+            } else {
+                $isNull = false;
+            }
+        }
+
+        if($isNull) {
+            return $this->index();
+        }
+        else {
+
+            $propertyType = $request->property_type;
+            $city = $request->city;
+            $fromPrice = $request->price_from;
+            $toPrice = $request->price_to;
+            $fromPricePerArea = $request->price_per_m2_from;
+            $toPricePerArea = $request->price_per_m2_to;
+
+
+            $query = PropertyModel::with('images')
+                ->where("property_type", "LIKE", "%$propertyType%")
+                ->where("city", "LIKE", "%$city%");
+
+
+            if($fromPrice !== null) {
+                $query->where("price", ">=", $fromPrice);
+            }
+
+            if($toPrice !== null) {
+                $query->where("price", "<=", $toPrice);
+            }
+
+            if($fromPricePerArea !== null) {
+                $query->where("price_per_square_meter", ">=", $fromPricePerArea);
+            }
+
+            if($toPricePerArea !== null) {
+                $query->where("price_per_square_meter", "<=", $toPricePerArea);
+            }
+
+
+            $properties = $query->get();
+
+
+
+            return view('welcome', compact('properties'));
+        }
     }
 
     /**

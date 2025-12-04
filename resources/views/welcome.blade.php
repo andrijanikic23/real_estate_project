@@ -3,6 +3,67 @@
 
 @section('content')
 
+    <article class="container mt-5">
+        <form method="POST" action="{{ route('properties.filter') }}">
+            @csrf
+            <div class="row g-3">
+                <!-- Prvi red: Tip objekta + Grad -->
+                <div class="col-md-6">
+                    <label for="property_type" class="form-label">Tip objekta <i class="fa-solid fa-house"></i></label>
+                    <select class="form-select" id="property_type" name="property_type">
+                        <option disabled {{ old('property_type') ? '' : 'selected' }}>Izaberi tip objekta</option>
+                        <option value="apartment" {{ old('property_type') == 'apartment' ? 'selected' : '' }}>Stan</option>
+                        <option value="house" {{ old('property_type') == 'house' ? 'selected' : '' }}>Kuća</option>
+                        <option value="commercial space" {{ old('property_type') == 'commercial space' ? 'selected' : '' }}>Poslovni prostor</option>
+                        <option value="construction land" {{ old('property_type') == 'construction land' ? 'selected' : '' }}>Građevinsko zemljište</option>
+                        <option value="agricultural land" {{ old('property_type') == 'agricultural land' ? 'selected' : '' }}>Poljoprivredno zemljište</option>
+                        <option value="holiday cottage" {{ old('property_type') == 'holiday cottage' ? 'selected' : '' }}>Vikendica</option>
+                        <option value="warehouse" {{ old('property_type') == 'warehouse' ? 'selected' : '' }}>Magacin</option>
+                    </select>
+                    @if($errors->has('property_type'))
+                        <div class="text-danger mt-1">{{ $errors->first('property_type') }}</div>
+                    @endif
+                </div>
+
+                <div class="col-md-6">
+                    <label for="city" class="form-label">Grad <i class="fa-solid fa-location-dot"></i></label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Grad" maxlength="32"
+                           value="{{ old('city') }}">
+                    @if($errors->has('city'))
+                        <div class="text-danger mt-1">{{ $errors->first('city') }}</div>
+                    @endif
+                </div>
+
+                <!-- Drugi red: Cena od, Cena do, Cena po m² od, Cena po m² do -->
+                <div class="col-md-3">
+                    <label for="price_from" class="form-label">Cena od (€)</label>
+                    <input type="number" class="form-control" id="price_from" name="price_from" placeholder="0" value="{{ old('price_from') }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="price_to" class="form-label">Cena do (€)</label>
+                    <input type="number" class="form-control" id="price_to" name="price_to" placeholder="0" value="{{ old('price_to') }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="price_per_m2_from" class="form-label">Cena po m² od (€)</label>
+                    <input type="number" class="form-control" id="price_per_m2_from" name="price_per_m2_from" placeholder="0" value="{{ old('price_per_m2_from') }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="price_per_m2_to" class="form-label">Cena po m² do (€)</label>
+                    <input type="number" class="form-control" id="price_per_m2_to" name="price_per_m2_to" placeholder="0" value="{{ old('price_per_m2_to') }}">
+                </div>
+
+                <!-- Dugme za slanje -->
+                <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-primary">Traži <i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+        </form>
+    </article>
+
+
     <article class="mt-5">
         <div class="container">
             <div class="row g-4">
@@ -56,7 +117,7 @@
                                     <p class="card-text mb-1">
                                         {{ WelcomeHelper::propertyType($property->property_type) }} |
                                         {{ number_format($property->area, 0, ',', '.') }}m&sup2; |
-                                        {{ WelcomeHelper::pricePerSquare($property->area, $property->price) }}&euro;/m&sup2; |
+                                        {{ $property->price_per_square_meter }}&euro;/m&sup2; |
                                         {{ $property->floor }}/{{ $property->total_floors }} sprat
                                     </p>
                                     <p class="card-text">
