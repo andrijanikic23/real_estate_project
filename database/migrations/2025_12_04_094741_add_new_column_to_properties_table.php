@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('properties', function (Blueprint $table) {
-            $table->string('bedroom_number')->after('area')->nullable();
-            $table->string('commercial_type')->after('bedroom_number')->nullable();
+            $table->integer('price_per_square_meter')->after('area');
         });
     }
 
@@ -23,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('properties', function (Blueprint $table) {
-            $table->dropColumn('bedroom_number', 'commercial_type');
+            $table->dropColumn('price_per_square_meter');
         });
     }
 };
