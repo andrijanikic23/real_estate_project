@@ -10,7 +10,7 @@ class NewPropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'             => 'required|string|max:128',
+            'title'             => 'required|string|max:64',
             'property_type'     => 'required|string|max:32',
             'description'       => 'required|string',
             'city'              => 'required|string|max:32',
