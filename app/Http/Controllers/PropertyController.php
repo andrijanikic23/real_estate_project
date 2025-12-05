@@ -6,8 +6,11 @@ use App\Http\Requests\NewPropertyRequest;
 use App\Http\Requests\PropertySearchRequest;
 use App\Models\PropertyImageModel;
 use App\Models\PropertyModel;
+use App\Models\UserFavouriteModel;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use function Symfony\Component\String\b;
 
 
 class PropertyController extends Controller
@@ -20,7 +23,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = PropertyModel::with('images')->get();
+        $properties = PropertyModel::with('images', 'favourites')->get();
 
         return view('welcome', compact('properties'));
     }
@@ -121,12 +124,34 @@ class PropertyController extends Controller
         }
     }
 
+    public function like(Request $request)
+    {
+        $icon = $request->icon;
+        $propertyId = $request->propertyId;
+        $userId = Auth::id();
+
+        if($icon == "regular")
+        {
+            UserFavouriteModel::create([
+                'user_id' => $userId,
+                'property_id' => $propertyId
+            ]);
+
+            return redirect()->back();
+        }
+        else {
+            UserFavouriteModel::where('user_id', $userId)->where('property_id', $propertyId)->delete();
+
+            return redirect()->back();
+        }
+    }
+
     /**
      * Display the specified resource.
      */
     public function show(PropertyModel $properties)
     {
-
+        //
     }
 
     /**

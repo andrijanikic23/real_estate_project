@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use Illuminate\Support\Facades\Auth;
+
 class WelcomeHelper
 {
 
@@ -40,5 +42,18 @@ class WelcomeHelper
         {
             return "namešten";
         }
+    }
+
+    public static function bookmark($favourites)
+    {
+        foreach($favourites as $fav) {
+            if($fav->user_id == Auth::id())
+            {
+                return "solid";
+            }
+
+        }
+
+        return "regular";
     }
 }

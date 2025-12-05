@@ -1,10 +1,10 @@
-@php use App\Http\WelcomeHelper; @endphp
+@php use App\Http\WelcomeHelper;use Illuminate\Support\Facades\Auth; @endphp
 @extends('layout')
 
 @section('content')
 
     <article class="container mt-5">
-        <form method="POST" action="{{ route('properties.filter') }}">
+        <form method="GET" action="{{ route('properties.filter') }}">
             @csrf
             <div class="row g-3">
                 <!-- Prvi red: Tip objekta + Grad -->
@@ -12,13 +12,27 @@
                     <label for="property_type" class="form-label">Tip objekta <i class="fa-solid fa-house"></i></label>
                     <select class="form-select" id="property_type" name="property_type">
                         <option disabled {{ old('property_type') ? '' : 'selected' }}>Izaberi tip objekta</option>
-                        <option value="apartment" {{ old('property_type') == 'apartment' ? 'selected' : '' }}>Stan</option>
+                        <option value="apartment" {{ old('property_type') == 'apartment' ? 'selected' : '' }}>Stan
+                        </option>
                         <option value="house" {{ old('property_type') == 'house' ? 'selected' : '' }}>Kuća</option>
-                        <option value="commercial space" {{ old('property_type') == 'commercial space' ? 'selected' : '' }}>Poslovni prostor</option>
-                        <option value="construction land" {{ old('property_type') == 'construction land' ? 'selected' : '' }}>Građevinsko zemljište</option>
-                        <option value="agricultural land" {{ old('property_type') == 'agricultural land' ? 'selected' : '' }}>Poljoprivredno zemljište</option>
-                        <option value="holiday cottage" {{ old('property_type') == 'holiday cottage' ? 'selected' : '' }}>Vikendica</option>
-                        <option value="warehouse" {{ old('property_type') == 'warehouse' ? 'selected' : '' }}>Magacin</option>
+                        <option
+                            value="commercial space" {{ old('property_type') == 'commercial space' ? 'selected' : '' }}>
+                            Poslovni prostor
+                        </option>
+                        <option
+                            value="construction land" {{ old('property_type') == 'construction land' ? 'selected' : '' }}>
+                            Građevinsko zemljište
+                        </option>
+                        <option
+                            value="agricultural land" {{ old('property_type') == 'agricultural land' ? 'selected' : '' }}>
+                            Poljoprivredno zemljište
+                        </option>
+                        <option
+                            value="holiday cottage" {{ old('property_type') == 'holiday cottage' ? 'selected' : '' }}>
+                            Vikendica
+                        </option>
+                        <option value="warehouse" {{ old('property_type') == 'warehouse' ? 'selected' : '' }}>Magacin
+                        </option>
                     </select>
                     @if($errors->has('property_type'))
                         <div class="text-danger mt-1">{{ $errors->first('property_type') }}</div>
@@ -37,27 +51,32 @@
                 <!-- Drugi red: Cena od, Cena do, Cena po m² od, Cena po m² do -->
                 <div class="col-md-3">
                     <label for="price_from" class="form-label">Cena od (€)</label>
-                    <input type="number" class="form-control" id="price_from" name="price_from" placeholder="0" value="{{ old('price_from') }}">
+                    <input type="number" class="form-control" id="price_from" name="price_from" placeholder="0"
+                           value="{{ old('price_from') }}">
                 </div>
 
                 <div class="col-md-3">
                     <label for="price_to" class="form-label">Cena do (€)</label>
-                    <input type="number" class="form-control" id="price_to" name="price_to" placeholder="0" value="{{ old('price_to') }}">
+                    <input type="number" class="form-control" id="price_to" name="price_to" placeholder="0"
+                           value="{{ old('price_to') }}">
                 </div>
 
                 <div class="col-md-3">
                     <label for="price_per_m2_from" class="form-label">Cena po m² od (€)</label>
-                    <input type="number" class="form-control" id="price_per_m2_from" name="price_per_m2_from" placeholder="0" value="{{ old('price_per_m2_from') }}">
+                    <input type="number" class="form-control" id="price_per_m2_from" name="price_per_m2_from"
+                           placeholder="0" value="{{ old('price_per_m2_from') }}">
                 </div>
 
                 <div class="col-md-3">
                     <label for="price_per_m2_to" class="form-label">Cena po m² do (€)</label>
-                    <input type="number" class="form-control" id="price_per_m2_to" name="price_per_m2_to" placeholder="0" value="{{ old('price_per_m2_to') }}">
+                    <input type="number" class="form-control" id="price_per_m2_to" name="price_per_m2_to"
+                           placeholder="0" value="{{ old('price_per_m2_to') }}">
                 </div>
 
                 <!-- Dugme za slanje -->
                 <div class="col-12 mt-3">
-                    <button type="submit" class="btn btn-primary">Traži <i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" class="btn btn-primary">Traži <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
             </div>
         </form>
@@ -76,31 +95,37 @@
                                     @if($property->images->isNotEmpty())
                                         {{-- First image --}}
                                         <div class="carousel-item active">
-                                            <img src="{{ asset('storage/property_images/' . $property->images->first()->path) }}"
-                                                 class="d-block w-100" style="height:200px; object-fit:cover;" alt="Property image">
+                                            <img
+                                                src="{{ asset('storage/property_images/' . $property->images->first()->path) }}"
+                                                class="d-block w-100" style="height:200px; object-fit:cover;"
+                                                alt="Property image">
                                         </div>
                                         {{-- Remaining images --}}
                                         @foreach($property->images->skip(1) as $image)
                                             <div class="carousel-item">
                                                 <img src="{{ asset('storage/property_images/' . $image->path) }}"
-                                                     class="d-block w-100" style="height:200px; object-fit:cover;" alt="Property image">
+                                                     class="d-block w-100" style="height:200px; object-fit:cover;"
+                                                     alt="Property image">
                                             </div>
                                         @endforeach
                                     @else
                                         {{-- Placeholder --}}
                                         <div class="carousel-item active">
                                             <img src="https://via.placeholder.com/400x200?text=No+Image"
-                                                 class="d-block w-100" style="height:200px; object-fit:cover;" alt="No image">
+                                                 class="d-block w-100" style="height:200px; object-fit:cover;"
+                                                 alt="No image">
                                         </div>
                                     @endif
                                 </div>
                                 {{-- Carousel controls --}}
                                 @if($property->images->count() > 1)
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ $property->id }}" data-bs-slide="prev">
+                                    <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carousel{{ $property->id }}" data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ $property->id }}" data-bs-slide="next">
+                                    <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carousel{{ $property->id }}" data-bs-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
@@ -137,6 +162,33 @@
                                     <a href="{{ route('properties.show', $property->id) }}" class="btn btn-primary">
                                         Pogledaj oglas
                                     </a>
+                                </div>
+
+                                <div class="d-flex justify-content-evenly mt-3">
+                                    <a href="tel:+381612111088"><i class="fa-solid fa-phone-volume fa-xl"></i></a>
+
+                                    <a href="https://www.google.com/maps/place/%D0%91%D1%83%D0%BB%D0%B5%D0%B2%D0%B0%D1%80+%D0%97%D0%BE%D1%80%D0%B0%D0%BD%D0%B0+%D0%82%D0%B8%D0%BD%D1%92%D0%B8%D1%9B%D0%B0,+%D0%91%D0%B5%D0%BE%D0%B3%D1%80%D0%B0%D0%B4/@44.8165232,20.417593,17z/data=!3m1!4b1!4m6!3m5!1s0x475a65647916d55f:0x37bb6cf09f0a5a48!8m2!3d44.8165194!4d20.4201679!16s%2Fg%2F11cft__8j?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D"><i
+                                            class="fa-solid fa-map-location fa-xl"></i> </a>
+
+
+                                    <form method="POST" action="{{ route('properties.bookmark') }}">
+                                        @csrf
+                                        <input name="propertyId" type="hidden" value="{{ $property->id }}">
+                                        <input name="icon" type="hidden" value="{{ $bookmarkType = WelcomeHelper::bookmark($property->favourites) }}">
+                                        <button class="btn btn-primary"><i class="fa-{{ $bookmarkType = WelcomeHelper::bookmark($property->favourites) }} fa-bookmark"></i></button>
+                                    </form>
+
+
+
+
+{{--                                    @foreach($property->favourites as $userLike)--}}
+{{--                                        @if($userLike->user_id == Auth::id())--}}
+{{--                                            <a href="{{ route('properties.favourite', ['propertyId' => $property->id]) }}"><i--}}
+{{--                                                    class="fa-solid fa-bookmark fa-xl"></i></a>--}}
+{{--                                        @endif--}}
+{{--                                    @endforeach--}}
+
+
                                 </div>
                             </div>
                         </div>

@@ -34,4 +34,9 @@ class PropertyModel extends Model
     {
         return $this->hasMany(PropertyImageModel::class, 'property_id', 'id');
     }
+
+    public function favourites()
+    {
+        return $this->hasMany(UserFavouriteModel::class, 'property_id', 'id');
+    }
 }
