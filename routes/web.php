@@ -4,11 +4,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('properties', PropertyController::class);
-
-Route::get('properties/search', [PropertyController::class, 'filter'])->name('properties.filter');
 
 Route::post('properties/bookmark', [PropertyController::class, 'like'])->name('properties.bookmark');
+Route::get('properties/search', [PropertyController::class, 'filter'])->name('properties.filter');
+Route::resource('properties', PropertyController::class);
+
 
 
 Route::get('/dashboard', function () {

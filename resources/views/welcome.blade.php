@@ -5,13 +5,13 @@
 
     <article class="container mt-5">
         <form method="GET" action="{{ route('properties.filter') }}">
-            @csrf
+
             <div class="row g-3">
                 <!-- Prvi red: Tip objekta + Grad -->
                 <div class="col-md-6">
                     <label for="property_type" class="form-label">Tip objekta <i class="fa-solid fa-house"></i></label>
                     <select class="form-select" id="property_type" name="property_type">
-                        <option disabled {{ old('property_type') ? '' : 'selected' }}>Izaberi tip objekta</option>
+                        <option disabled {{ old('property_type') ? '' : 'selected' }} value="">Izaberi tip objekta</option>
                         <option value="apartment" {{ old('property_type') == 'apartment' ? 'selected' : '' }}>Stan
                         </option>
                         <option value="house" {{ old('property_type') == 'house' ? 'selected' : '' }}>Kuća</option>

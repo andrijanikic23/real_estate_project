@@ -64,8 +64,6 @@ class PropertyController extends Controller
         }
 
         return redirect()->back()->with('success', 'Novi oglas uspešno napravljen!');
-
-
     }
 
     public function filter(PropertySearchRequest $request)
@@ -78,6 +76,7 @@ class PropertyController extends Controller
                 continue;
             } else {
                 $isNull = false;
+                break;
             }
         }
 
@@ -117,8 +116,6 @@ class PropertyController extends Controller
 
 
             $properties = $query->get();
-
-
 
             return view('welcome', compact('properties'));
         }
