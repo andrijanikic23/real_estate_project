@@ -17,7 +17,6 @@ class PropertyController extends Controller
 {
 
     use ImageUploadTrait;
-
     /**
      * Display a listing of the resource.
      */

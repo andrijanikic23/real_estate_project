@@ -173,7 +173,7 @@
 
                                 {{-- View Details Button --}}
                                 <div class="d-grid">
-                                    <a href="{{ route('properties.show', $property->id) }}" class="btn btn-primary">
+                                    <a href="" class="btn btn-primary">
                                         Pogledaj oglas
                                     </a>
                                 </div>
@@ -184,13 +184,14 @@
                                     <a href="{{ $property->map_url }}"><i
                                             class="fa-solid fa-map-location fa-xl"></i> </a>
 
-
-                                    <form method="POST" action="{{ route('properties.bookmark') }}">
-                                        @csrf
-                                        <input name="propertyId" type="hidden" value="{{ $property->id }}">
-                                        <input name="icon" type="hidden" value="{{ $bookmarkType = WelcomeHelper::bookmark($property->favourites) }}">
-                                        <button class="btn btn-primary"><i class="fa-{{ $bookmarkType = WelcomeHelper::bookmark($property->favourites) }} fa-bookmark"></i></button>
-                                    </form>
+                                    @auth
+                                        <form method="POST" action="{{ route('properties.bookmark') }}">
+                                            @csrf
+                                            <input name="propertyId" type="hidden" value="{{ $property->id }}">
+                                            <input name="icon" type="hidden" value="{{ $bookmarkType = WelcomeHelper::bookmark($property->favourites) }}">
+                                            <button class="btn btn-primary"><i class="fa-{{ $bookmarkType = WelcomeHelper::bookmark($property->favourites) }} fa-bookmark"></i></button>
+                                        </form>
+                                    @endauth
 
 
 
