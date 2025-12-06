@@ -83,6 +83,12 @@
     </article>
 
     <div class="container mt-4">
+        @if(count($properties) == 0)
+            <p class="text-warning fw-bold text-center" style="font-size: 1.5rem">Trenutno nema oglasa za odabrane parametre</p>
+        @endif
+    </div>
+
+    <div class="container mt-4">
         @if(\Illuminate\Support\Facades\Session::has('like'))
             <p class="text-success fw-bold" style="font-size: 1.5rem">{{ \Illuminate\Support\Facades\Session::get('like') }}</p>
         @elseif(\Illuminate\Support\Facades\Session::has('unlike'))

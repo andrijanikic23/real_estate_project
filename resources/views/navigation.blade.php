@@ -15,10 +15,14 @@
                         Prodaja
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Akcija</a></li>
-                        <li><a class="dropdown-item" href="#">Još jedna akcija</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Nešto drugo</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties.index') }}">Svi oglasi</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties.filter', ['property_type' => 'apartment', 'city' => 'Beograd']) }}">Stanovi u Beogradu</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties.filter', ['property_type' => 'house', 'city' => 'Beograd']) }}">Kuće u Beogradu</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties.filter', ['property_type' => 'construction land', 'city' => 'Beograd']) }}">Građevinsko zemljište u Beogradu</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties.filter', ['property_type' => 'agricultural land', 'city' => 'Beograd']) }}">Poljoprivredno zemljište u Beogradu</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties.filter', ['property_type' => 'commercial space']) }}">Poslovni prostori</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties.filter', ['property_type' => 'warehouse']) }}">Magacini</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties.filter', ['property_type' => 'holiday cottage']) }}">Vikendice</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown me-2">
