@@ -134,12 +134,12 @@ class PropertyController extends Controller
                 'property_id' => $propertyId
             ]);
 
-            return redirect()->back();
+            return redirect()->back()->with('like', 'Uspešno ste sačuvali oglas!');
         }
         else {
             UserFavouriteModel::where('user_id', $userId)->where('property_id', $propertyId)->delete();
 
-            return redirect()->back();
+            return redirect()->back()->with('unlike','Uspešno ste uklonili oglas iz sačuvanih.');
         }
     }
 

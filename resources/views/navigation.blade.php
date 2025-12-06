@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 d-flex flex-row align-items-center">
                 <li class="nav-item dropdown me-2">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                         Prodaja
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -22,7 +22,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown me-2">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                         Izdavanje
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -33,11 +33,11 @@
                     </ul>
                 </li>
                 <li class="nav-item me-2">
-                    <a href="{{ route('properties.create') }}" class="nav-link" tabindex="-1" aria-disabled="true">Novi oglas</a>
+                    <a href="{{ route('properties.create') }}" class="nav-link fw-bold" tabindex="-1" aria-disabled="true">Novi oglas</a>
                 </li>
 
                 <li class="nav-item me-2">
-                    <a href="{{ route('properties.create') }}" class="nav-link" tabindex="-1" aria-disabled="true">Kontakt</a>
+                    <a href="{{ route('properties.create') }}" class="nav-link fw-bold" tabindex="-1" aria-disabled="true">Kontakt</a>
                 </li>
             </ul>
         </div>
@@ -45,11 +45,11 @@
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center">
                 <li class="nav-item me-2 p-2 bd-highlight">
-                    <a href="" class="nav-link" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-bookmark"></i></a>
+                    <a href="" class="nav-link fw-bold" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-bookmark"></i></a>
                 </li>
                 <li>
                 <li class="nav-item me-2 p-2 bd-highlight">
-                    <a href="{{ route('profile.edit') }}" class="nav-link" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-user"></i></a>
+                    <a href="{{ route('profile.edit') }}" class="nav-link fw-bold" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-user"></i></a>
                 </li>
                 </li>
             </ul>

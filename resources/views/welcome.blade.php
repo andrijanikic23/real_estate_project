@@ -82,6 +82,14 @@
         </form>
     </article>
 
+    <div class="container mt-4">
+        @if(\Illuminate\Support\Facades\Session::has('like'))
+            <p class="text-success fw-bold" style="font-size: 1.5rem">{{ \Illuminate\Support\Facades\Session::get('like') }}</p>
+        @elseif(\Illuminate\Support\Facades\Session::has('unlike'))
+            <p class="text-success fw-bold" style="font-size: 1.5rem">{{ \Illuminate\Support\Facades\Session::get('unlike') }}</p>
+        @endif
+    </div>
+
 
     <article class="mt-5">
         <div class="container">
