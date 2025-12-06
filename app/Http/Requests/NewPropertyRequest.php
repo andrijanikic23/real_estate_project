@@ -16,6 +16,8 @@ class NewPropertyRequest extends FormRequest
             'city'              => 'required|string|max:32',
             'municipality'      => 'required|string|max:32',
             'address'           => 'required|string|max:64',
+            'map_url'           => 'nullable|string',
+            'contact_number'    => 'nullable|string',
             'price'             => 'required|numeric|min:1',
             'area'              => 'required|numeric|min:1',
             'floor'             => 'nullable|integer|min:0',

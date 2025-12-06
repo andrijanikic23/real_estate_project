@@ -14,6 +14,8 @@ class PropertyModel extends Model
         'city',
         'municipality',
         'address',
+        'map_url',
+        'contact_number',
         'price',
         'area',
         'price_per_square_meter',

@@ -173,9 +173,9 @@
                                 </div>
 
                                 <div class="d-flex justify-content-evenly mt-3">
-                                    <a href="tel:+381612111088"><i class="fa-solid fa-phone-volume fa-xl"></i></a>
+                                    <a href="tel:{{ $property->contact_number }}"><i class="fa-solid fa-phone-volume fa-xl"></i></a>
 
-                                    <a href="https://www.google.com/maps/place/%D0%91%D1%83%D0%BB%D0%B5%D0%B2%D0%B0%D1%80+%D0%97%D0%BE%D1%80%D0%B0%D0%BD%D0%B0+%D0%82%D0%B8%D0%BD%D1%92%D0%B8%D1%9B%D0%B0,+%D0%91%D0%B5%D0%BE%D0%B3%D1%80%D0%B0%D0%B4/@44.8165232,20.417593,17z/data=!3m1!4b1!4m6!3m5!1s0x475a65647916d55f:0x37bb6cf09f0a5a48!8m2!3d44.8165194!4d20.4201679!16s%2Fg%2F11cft__8j?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D"><i
+                                    <a href="{{ $property->map_url }}"><i
                                             class="fa-solid fa-map-location fa-xl"></i> </a>
 
 

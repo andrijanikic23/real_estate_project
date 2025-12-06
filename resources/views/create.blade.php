@@ -101,6 +101,24 @@
                 </div>
             </div>
 
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="map_url" placeholder="Link do nekretnine/nepokretnosti">
+                    @if($errors->has('map_url'))
+                        <div>{{ $errors->first('map_url') }}</div>
+                    @endif
+                </div>
+
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="contact_number" placeholder="Kontakt telefon" maxlength="32">
+                    @if($errors->has('contact_number'))
+                        <div>{{ $errors->first('contact_number') }}</div>
+                    @endif
+                </div>
+            </div>
+
+
             <div class="row mb-3">
                 <div class="col-md-3">
                     <input type="number" class="form-control" name="price" placeholder="Cena &euro;" step="0.01" min="0"
