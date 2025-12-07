@@ -51,6 +51,10 @@
             <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center">
 
                 <li class="nav-item me-2 p-2 bd-highlight">
+                    <a href="{{ route('properties.posted') }}" class="nav-link fw-bold" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-pen-to-square"></i></a>
+                </li>
+
+                <li class="nav-item me-2 p-2 bd-highlight">
                     <a href="" class="nav-link fw-bold" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-bookmark"></i></a>
                 </li>
 

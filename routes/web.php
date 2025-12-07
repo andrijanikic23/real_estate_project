@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('properties/bookmark', [PropertyController::class, 'like'])->name('properties.bookmark');
 Route::get('properties/search', [PropertyController::class, 'filter'])->name('properties.filter');
+Route::get('properties/posted', [PropertyController::class, 'posted'])->name('properties.posted');
 Route::resource('properties', PropertyController::class)
     ->middlewareFor('create', 'auth');
 

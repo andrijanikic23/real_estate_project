@@ -188,9 +188,9 @@
                                 </div>
 
                                 <div class="d-flex justify-content-evenly mt-3">
-                                    <a href="tel:{{ $property->contact_number }}"><i class="fa-solid fa-phone-volume fa-xl"></i></a>
+                                    <a href="tel:{{ $property->contact_number }}" class="btn btn-outline-primary"><i class="fa-solid fa-phone-volume fa-xl"></i></a>
 
-                                    <a href="{{ $property->map_url }}"><i
+                                    <a href="{{ $property->map_url }}" class="btn btn-outline-primary"><i
                                             class="fa-solid fa-map-location fa-xl"></i> </a>
 
                                     @auth
@@ -198,7 +198,7 @@
                                             @csrf
                                             <input name="propertyId" type="hidden" value="{{ $property->id }}">
                                             <input name="icon" type="hidden" value="{{ $bookmarkType = WelcomeHelper::bookmark($property->favourites) }}">
-                                            <button class="btn btn-primary"><i class="fa-{{ $bookmarkType = WelcomeHelper::bookmark($property->favourites) }} fa-bookmark"></i></button>
+                                            <button class="btn btn-outline-primary"><i class="fa-{{ $bookmarkType = WelcomeHelper::bookmark($property->favourites) }} fa-bookmark"></i></button>
                                         </form>
                                     @endauth
 

@@ -144,6 +144,13 @@ class PropertyController extends Controller
         }
     }
 
+    public function posted()
+    {
+        $postedProperties = PropertyModel::where('user_id', Auth::id())->get();
+
+        return view('posted', compact('postedProperties'));
+    }
+
     /**
      * Display the specified resource.
      */
@@ -171,8 +178,10 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PropertyModel $propertyModel)
+    public function destroy(PropertyModel $property)
     {
-        //
+        $property->delete();
+
+        return redirect()->back();
     }
 }
