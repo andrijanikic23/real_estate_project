@@ -44,12 +44,20 @@
 
             @csrf
 
-            <div class="row mb-3">
-                <div class="col-md-6">
+                <div class="mb-3">
                     <input type="text" class="form-control" name="title" placeholder="Naslov" maxlength="128" required>
                     @if($errors->has('title'))
                         <div>{{ $errors->first('title') }}</div>
                     @endif
+                </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <select class="form-select" name="purpose" required>
+                        <option disabled selected>Namena</option>
+                        <option value="sale">Prodaja</option>
+                        <option value="rent">Izdavanje</option>
+                    </select>
                 </div>
 
                 <div class="col-md-6">
@@ -68,6 +76,7 @@
                     @endif
                 </div>
             </div>
+
 
             <div class="mb-3">
                 <textarea class="form-control" name="description" placeholder="Opis oglasa" rows="3"

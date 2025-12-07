@@ -84,6 +84,7 @@ class PropertyController extends Controller
         }
         else {
 
+            $purpose = $request->purpose;
             $propertyType = $request->property_type;
             $city = $request->city;
             $fromPrice = $request->price_from;
@@ -93,6 +94,7 @@ class PropertyController extends Controller
 
 
             $query = PropertyModel::with('images')
+                ->where("purpose", "LIKE", "%$purpose%")
                 ->where("property_type", "LIKE", "%$propertyType%")
                 ->where("city", "LIKE", "%$city%");
 

@@ -7,13 +7,22 @@
         <form method="GET" action="{{ route('properties.filter') }}">
 
             <div class="row g-3">
+
+                <div class="col-md-4">
+                    <label for="purpose" class="form-label">Tip oglasa <i class="fa-solid fa-rectangle-ad"></i></label>
+                    <select class="form-select" id="purpose" name="purpose">
+                        <option value="" selected disabled >Izaberite tip oglasa</option>
+                        <option value="sale">Prodaja</option>
+                        <option value="rent">Izdavanje</option>
+                    </select>
+                </div>
                 <!-- Prvi red: Tip objekta + Grad -->
-                <div class="col-md-6">
+
+                <div class="col-md-4">
                     <label for="property_type" class="form-label">Tip objekta <i class="fa-solid fa-house"></i></label>
                     <select class="form-select" id="property_type" name="property_type">
                         <option disabled {{ old('property_type') ? '' : 'selected' }} value="">Izaberi tip objekta</option>
-                        <option value="apartment" {{ old('property_type') == 'apartment' ? 'selected' : '' }}>Stan
-                        </option>
+                        <option value="apartment" {{ old('property_type') == 'apartment' ? 'selected' : '' }}>Stan</option>
                         <option value="house" {{ old('property_type') == 'house' ? 'selected' : '' }}>Kuća</option>
                         <option
                             value="commercial space" {{ old('property_type') == 'commercial space' ? 'selected' : '' }}>
@@ -39,7 +48,7 @@
                     @endif
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="city" class="form-label">Grad <i class="fa-solid fa-location-dot"></i></label>
                     <input type="text" class="form-control" id="city" name="city" placeholder="Grad" maxlength="32"
                            value="{{ old('city') }}">

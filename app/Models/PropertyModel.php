@@ -10,6 +10,7 @@ class PropertyModel extends Model
 
     protected $fillable = [
         'title',
+        'purpose',
         'description',
         'city',
         'municipality',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AdvertType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PropertySearchRequest extends FormRequest
@@ -9,7 +10,8 @@ class PropertySearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'property_type' => 'in:apartment,house,commercial space,construction land,agricultural land,holiday cottage,warehouse|nullable',
+            'purpose' => 'nullable',
+            'property_type' => ['nullable','in:apartment,house,commercial space,construction land,agricultural land,holiday cottage,warehouse' ,new AdvertType($this->input('purpose'), $this->input('property_type'))],
             'city' => 'nullable|string|max:64',
             'price_from' => 'nullable|integer|min:1',
             'price_to' => 'nullable|integer',

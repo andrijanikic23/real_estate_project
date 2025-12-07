@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AdvertType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class NewPropertyRequest extends FormRequest
@@ -9,9 +10,11 @@ class NewPropertyRequest extends FormRequest
 
     public function rules(): array
     {
+
         return [
             'title'             => 'required|string|max:64',
-            'property_type'     => 'required|string|max:32',
+            'purpose'           => 'required',
+            'property_type'     => ['required','string', 'max:32', new AdvertType($this->input('purpose'), $this->input('property_type'))],
             'description'       => 'required|string',
             'city'              => 'required|string|max:32',
             'municipality'      => 'required|string|max:32',
@@ -26,7 +29,7 @@ class NewPropertyRequest extends FormRequest
             'construction_year' => 'nullable|integer|min:1800|max:2100',
             'parking'           => 'string',
             'furnished'         => 'string',
-            'images'            => 'array',
+            'images'            => 'required|array',
             'images.*'          => 'image|mimes:jpg,jpeg,png,webp|max:10240',
             'user_id'           => 'required|integer|exists:users,id|min:1'
 
