@@ -54,7 +54,7 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <select class="form-select" name="purpose" required>
-                        <option disabled selected>Namena</option>
+                        <option disabled selected>Izaberite tip oglasa</option>
                         <option value="sale">Prodaja</option>
                         <option value="rent">Izdavanje</option>
                     </select>
