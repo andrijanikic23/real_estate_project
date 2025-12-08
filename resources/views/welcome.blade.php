@@ -22,28 +22,29 @@
                     <label for="property_type" class="form-label">Tip objekta <i class="fa-solid fa-house"></i></label>
                     <select class="form-select" id="property_type" name="property_type">
                         <option disabled {{ old('property_type') ? '' : 'selected' }} value="">Izaberi tip objekta</option>
-                        <option value="apartment" {{ old('property_type') == 'apartment' ? 'selected' : '' }}>Stan</option>
-                        <option value="house" {{ old('property_type') == 'house' ? 'selected' : '' }}>Kuća</option>
-                        <option
-                            value="commercial space" {{ old('property_type') == 'commercial space' ? 'selected' : '' }}>
+
+                        <option value="apartment" @selected(old('property_type') == 'apartment')>Stan</option>
+                        <option value="house" @selected(old('property_type') == 'house')>Kuća</option>
+
+                        <option value="commercial space" @selected(old('property_type') == 'commercial space')>
                             Poslovni prostor
                         </option>
-                        <option
-                            value="construction land" {{ old('property_type') == 'construction land' ? 'selected' : '' }}>
+
+                        <option value="construction land" @selected(old('property_type') == 'construction land')>
                             Građevinsko zemljište
                         </option>
-                        <option
-                            value="agricultural land" {{ old('property_type') == 'agricultural land' ? 'selected' : '' }}>
+                        <option value="agricultural land" @selected(old('property_type') == 'agricultural land')}>
                             Poljoprivredno zemljište
                         </option>
-                        <option
-                            value="holiday cottage" {{ old('property_type') == 'holiday cottage' ? 'selected' : '' }}>
+                        <option value="holiday cottage" @selected(old('property_type') == 'holiday cottage')}>
                             Vikendica
                         </option>
-                        <option value="warehouse" {{ old('property_type') == 'warehouse' ? 'selected' : '' }}>Magacin
+                        <option value="warehouse" @selected(old('property_type') == 'warehouse')>
+                            Magacin
                         </option>
                     </select>
-                    @if($errors->has('property_type'))
+
+                @if($errors->has('property_type'))
                         <div class="text-danger mt-1">{{ $errors->first('property_type') }}</div>
                     @endif
                 </div>
@@ -60,25 +61,25 @@
                 <!-- Drugi red: Cena od, Cena do, Cena po m² od, Cena po m² do -->
                 <div class="col-md-3">
                     <label for="price_from" class="form-label">Cena od (€)</label>
-                    <input type="number" class="form-control" id="price_from" name="price_from" placeholder="0"
+                    <input type="number" class="form-control" id="price_from" name="price_from" placeholder="0" value="{{ old('price_from') }}"
                            value="{{ old('price_from') }}">
                 </div>
 
                 <div class="col-md-3">
                     <label for="price_to" class="form-label">Cena do (€)</label>
-                    <input type="number" class="form-control" id="price_to" name="price_to" placeholder="0"
+                    <input type="number" class="form-control" id="price_to" name="price_to" placeholder="0" value="{{ old('price_to') }}"
                            value="{{ old('price_to') }}">
                 </div>
 
                 <div class="col-md-3">
                     <label for="price_per_m2_from" class="form-label">Cena po m² od (€)</label>
-                    <input type="number" class="form-control" id="price_per_m2_from" name="price_per_m2_from"
+                    <input type="number" class="form-control" id="price_per_m2_from" name="price_per_m2_from" value="{{ old('price_per_m2_from') }}"
                            placeholder="0" value="{{ old('price_per_m2_from') }}">
                 </div>
 
                 <div class="col-md-3">
                     <label for="price_per_m2_to" class="form-label">Cena po m² do (€)</label>
-                    <input type="number" class="form-control" id="price_per_m2_to" name="price_per_m2_to"
+                    <input type="number" class="form-control" id="price_per_m2_to" name="price_per_m2_to" value="{{ old('price_per_m2_to') }}"
                            placeholder="0" value="{{ old('price_per_m2_to') }}">
                 </div>
 

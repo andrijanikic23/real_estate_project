@@ -45,7 +45,7 @@
             @csrf
 
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="title" placeholder="Naslov" maxlength="128" required>
+                    <input type="text" class="form-control" name="title" placeholder="Naslov" maxlength="128" value="{{ old('title') }}" required>
                     @if($errors->has('title'))
                         <div>{{ $errors->first('title') }}</div>
                     @endif
@@ -55,8 +55,8 @@
                 <div class="col-md-6">
                     <select class="form-select" name="purpose" required>
                         <option disabled selected>Izaberite tip oglasa</option>
-                        <option value="sale">Prodaja</option>
-                        <option value="rent">Izdavanje</option>
+                        <option value="sale" {{ old("purpose") }}>Prodaja</option>
+                        <option value="rent" {{ old("purpose") }}>Izdavanje</option>
                     </select>
                 </div>
 
@@ -79,8 +79,7 @@
 
 
             <div class="mb-3">
-                <textarea class="form-control" name="description" placeholder="Opis oglasa" rows="3"
-                          required></textarea>
+                <textarea class="form-control" name="description" placeholder="Opis oglasa" rows="3" required></textarea>
                 @if($errors->has('description'))
                     <div>{{ $errors->first('description') }}</div>
                 @endif
@@ -88,14 +87,14 @@
 
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="city" placeholder="Grad" maxlength="32" required>
+                    <input type="text" class="form-control" name="city" placeholder="Grad" maxlength="32" value="{{ old('city') }}" required >
                     @if($errors->has('city'))
                         <div>{{ $errors->first('city') }}</div>
                     @endif
                 </div>
 
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="municipality" placeholder="Opština" maxlength="32"
+                    <input type="text" class="form-control" name="municipality" value="{{ old('municipality') }}" placeholder="Opština" maxlength="32"
                            required>
                     @if($errors->has('municipality'))
                         <div>{{ $errors->first('municipality') }}</div>
@@ -103,7 +102,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="address" placeholder="Adresa" maxlength="64" required>
+                    <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="Adresa" maxlength="64" required>
                     @if($errors->has('address'))
                         <div>{{ $errors->first('address') }}</div>
                     @endif
@@ -113,14 +112,14 @@
 
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="map_url" placeholder="Link do nekretnine/nepokretnosti">
+                    <input type="text" class="form-control" name="map_url" value="{{ old('map_url') }}" placeholder="Link do nekretnine/nepokretnosti">
                     @if($errors->has('map_url'))
                         <div>{{ $errors->first('map_url') }}</div>
                     @endif
                 </div>
 
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="contact_number" placeholder="Kontakt telefon" maxlength="32">
+                    <input type="text" class="form-control" name="contact_number" value="{{ old('contact_number') }}" placeholder="Kontakt telefon" maxlength="32">
                     @if($errors->has('contact_number'))
                         <div>{{ $errors->first('contact_number') }}</div>
                     @endif
@@ -130,7 +129,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-3">
-                    <input type="number" class="form-control" name="price" placeholder="Cena &euro;" step="0.01" min="0"
+                    <input type="number" class="form-control" name="price" value="{{ old('price') }}" placeholder="Cena &euro;" step="0.01" min="0"
                            required>
                     @if($errors->has('price'))
                         <div>{{ $errors->first('price') }}</div>
@@ -138,7 +137,7 @@
                 </div>
 
                 <div class="col-md-3">
-                    <input type="number" class="form-control" name="area" placeholder="Površina (m²)" step="0.1" min="0"
+                    <input type="number" class="form-control" name="area" value="{{ old('area') }}" placeholder="Površina (m²)" step="0.1" min="0"
                            required>
                     @if($errors->has('area'))
                         <div>{{ $errors->first('area') }}</div>
@@ -146,14 +145,14 @@
                 </div>
 
                 <div class="col-md-3">
-                    <input type="number" class="form-control" name="floor" placeholder="Sprat" min="0">
+                    <input type="number" class="form-control" name="floor" value="{{ old('floor') }}" placeholder="Sprat" min="0">
                     @if($errors->has('floor'))
                         <div>{{ $errors->first('floor') }}</div>
                     @endif
                 </div>
 
                 <div class="col-md-3">
-                    <input type="number" class="form-control" name="total_floors" placeholder="Spratnost objekta"
+                    <input type="number" class="form-control" name="total_floors" value="{{ old('total_floors') }}" placeholder="Spratnost objekta"
                            min="0">
                     @if($errors->has('total_floors'))
                         <div>{{ $errors->first('total_floors') }}</div>
@@ -177,7 +176,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <input type="number" class="form-control" name="construction_year" placeholder="Godina izgradnje"
+                    <input type="number" class="form-control" name="construction_year" value="{{ old('construction_year') }}" placeholder="Godina izgradnje"
                            min="1800" max="2100">
                     @if($errors->has('construction_year'))
                         <div>{{ $errors->first('construction_year') }}</div>
