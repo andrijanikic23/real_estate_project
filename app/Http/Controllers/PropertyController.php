@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewPropertyRequest;
 use App\Http\Requests\PropertySearchRequest;
+use App\Http\Requests\PropertyUpdateRequest;
 use App\Models\PropertyImageModel;
 use App\Models\PropertyModel;
 use App\Models\UserFavouriteModel;
@@ -162,17 +163,23 @@ class PropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PropertyModel $propertyModel)
+    public function edit(PropertyModel $property)
     {
-        //
+        $propertyWithImages = PropertyModel::with('images')->whereId($property->id)->first();
+
+        return view('edit', ['property' => $propertyWithImages]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PropertyModel $propertyModel)
+    public function update(PropertyUpdateRequest $request, PropertyModel $property)
     {
-        //
+        $property->fill($request->all());
+
+        $changedFields = $property->getDirty();
+
+        dd($changedFields);
     }
 
     /**
