@@ -86,7 +86,7 @@
                             </div>
 
                             <div>
-                                <a href="{{ route('properties.show', ['property' => $property->id]) }}" class="btn btn-outline-success">
+                                <a href="{{ route('properties.edit', ['property' => $property->id]) }}" class="btn btn-outline-success">
                                     Izmenite oglas
                                 </a>
                             </div>
