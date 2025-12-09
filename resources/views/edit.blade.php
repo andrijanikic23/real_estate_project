@@ -35,9 +35,14 @@
 <div class="container my-5">
     <div class="card">
 
-        @if(Session::has('success'))
-            <h5 class="text-success">{{ Session::get('success') }}</h5>
+        @if(Session::has('statusSuccess'))
+            <h5 class="text-success">{{ Session::get('statusSuccess') }}</h5>
+        @else
+            <h5 class="text-danger">{{ Session::get('statusFail') }}</h5>
         @endif
+
+
+
 
         <h2>Izmenite stavke u oglasu</h2>
         <form action="{{ route('properties.update', $property->id) }}" enctype="multipart/form-data" method="POST">
@@ -235,19 +240,33 @@
                     @endif
                 </div>
 
-                <div class="col-md-2 form-check mt-3">
-                    <input type="checkbox" class="form-check-input" name="parking" id="parking"
-                           value="1" {{ EditHelper::getParkingFurnishedInfo(1, $property->parking) }}>
-                    <label class="form-check-label" for="parking">Parking</label>
+                <div class="col-md-2 form-check mb-3">
+                    <select class="form-select" name="parking">
+                        <option disabled>Da li postoji parking</option>
+                        <option
+                            value="1" {{ EditHelper::getParkingFurnishedInfo(1, $property->parking) }}>
+                            Parking
+                        </option>
+                        <option value="0" {{ EditHelper::getParkingFurnishedInfo(0, $property->parking) }}>
+                            Nema parkinga
+                        </option>
+                    </select>
                     @if($errors->has('parking'))
                         <div>{{ $errors->first('parking') }}</div>
                     @endif
                 </div>
 
-                <div class="col-md-2 form-check mt-3">
-                    <input type="checkbox" class="form-check-input" name="furnished" id="furnished"
-                           value="1" {{ EditHelper::getParkingFurnishedInfo(1, $property->furnished) }}>
-                    <label class="form-check-label" for="furnished">Namešten</label>
+                <div class="col-md-2 form-check mb-3">
+                    <select class="form-select" name="furnished">
+                        <option disabled>Da li je nekretnina/prostor namešten</option>
+                        <option
+                            value="1" {{ EditHelper::getParkingFurnishedInfo(1, $property->furnished) }}>
+                            Namešten
+                        </option>
+                        <option value="0" {{ EditHelper::getParkingFurnishedInfo(0, $property->furnished) }}>
+                            Nije namešten
+                        </option>
+                    </select>
                     @if($errors->has('furnished'))
                         <div>{{ $errors->first('furnished') }}</div>
                     @endif
