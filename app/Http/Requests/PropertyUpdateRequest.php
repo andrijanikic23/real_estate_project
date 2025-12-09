@@ -25,8 +25,8 @@ class PropertyUpdateRequest extends FormRequest
             'total_floors'      => 'nullable|integer|min:0',
             'heating_type'      => 'required|string|in:central,ta,gas,floor,none',
             'construction_year' => 'nullable|integer|min:1800|max:2100',
-            'parking'           => 'string',
-            'furnished'         => 'string',
+            'parking'           => 'string|in:0,1',
+            'furnished'         => 'string|in:0,1',
             'images'            => 'array',
             'images.*'          => 'image|mimes:jpg,jpeg,png,webp|max:10240',
         ];

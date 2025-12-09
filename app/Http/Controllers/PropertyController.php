@@ -177,9 +177,36 @@ class PropertyController extends Controller
     {
         $property->fill($request->all());
 
+        $files = $request->file('images');
+
         $changedFields = $property->getDirty();
 
-        dd($changedFields);
+        if(!empty($changedFields) || !empty($files)) {
+
+            $property->save();
+
+            foreach($files as $file)
+            {
+                $name = $this->uploadImage($file, "property_images/$property->id");
+
+                $name = $property->id."/".$name;
+
+                PropertyImageModel::create([
+                    'property_id' => $property->id,
+                    'path' => $name
+                ]);
+
+            }
+
+            return redirect()->back()->with('statusSuccess', 'Podaci ažurirani');
+        } else {
+
+            return redirect()->back()->with('statusFail', 'Niste promenili nijedan podatak!');
+        }
+
+
+
+
     }
 
     /**
