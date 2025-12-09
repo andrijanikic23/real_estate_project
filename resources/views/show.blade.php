@@ -95,7 +95,9 @@
                             @if(isset($property->construction_year))
                                 <li><strong><i class="fa-solid fa-person-digging"></i> Godina izgradnje: </strong>{{ $property->construction_year }}</li>
                             @endif
-
+                            @if(isset($property->contact_number))
+                                <li><strong><i class="fa-solid fa-square-phone"></i> Broj telefona: </strong><a href="tel:{{ $property->contact_number }}">{{ $property->contact_number }}</a></li>
+                            @endif
 
                         </ul>
                     </div>
