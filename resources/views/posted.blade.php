@@ -3,6 +3,11 @@
 
 @section('content')
 
+    <div class="container text-center mt-3 mb-3">
+        <h1 class="fw-bold text-decoration-underline">Vaši oglasi<i class="fa-solid fa-bullhorn"></i></h1>
+    </div>
+
+
     <div class="container mt-4">
         @if(count($postedProperties) < 1)
             <p class="text-warning fw-bold text-center" style="font-size: 1.5rem">Trenutno nemate nijedan oglas objavljen</p>
