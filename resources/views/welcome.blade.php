@@ -183,7 +183,7 @@
 
                                 {{-- View Details Button --}}
                                 <div class="d-grid">
-                                    <a href="" class="btn btn-primary">
+                                    <a href="{{ route('properties.show',['property' => $property->id]) }}" class="btn btn-primary">
                                         Pogledaj oglas
                                     </a>
                                 </div>
