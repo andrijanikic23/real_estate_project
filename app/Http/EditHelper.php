@@ -38,7 +38,7 @@ class EditHelper
     public static function getParkingFurnishedInfo($htmlTag, $db)
     {
         return match ($db) {
-            $htmlTag => 'checked',
+            $htmlTag => 'selected',
             default => null,
         };
     }
