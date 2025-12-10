@@ -23,6 +23,8 @@
 
     @yield("content")
 
+    @include('footer')
+
 
 
 </body>
