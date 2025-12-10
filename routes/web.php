@@ -5,6 +5,10 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyImageController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return redirect()->route('properties.index');
+});
+
 
 Route::post('properties/bookmark', [PropertyController::class, 'like'])->name('properties.bookmark');
 Route::get('properties/search', [PropertyController::class, 'filter'])->name('properties.filter');
