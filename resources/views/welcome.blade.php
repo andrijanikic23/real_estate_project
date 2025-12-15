@@ -1,6 +1,8 @@
 @php use App\Http\WelcomeHelper;use Illuminate\Support\Facades\Auth; @endphp
 @extends('layout')
 
+@section('title', 'Oglasi - Nekretnine.rs')
+
 @section('content')
 
     <article class="container mt-5">
@@ -172,6 +174,7 @@
                                     <p class="card-text">
                                         {{ WelcomeHelper::amenities($property->parking, $property->furnished) }}
                                     </p>
+                                    <p class="fw-bold">{{ WelcomeHelper::adType($property->purpose) }}</p>
                                 </div>
 
                                 {{-- Price --}}
