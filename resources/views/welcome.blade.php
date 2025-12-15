@@ -25,23 +25,23 @@
                     <select class="form-select" id="property_type" name="property_type">
                         <option disabled {{ old('property_type') ? '' : 'selected' }} value="">Izaberi tip objekta</option>
 
-                        <option value="apartment" @selected(old('property_type') == 'apartment')>Stan</option>
-                        <option value="house" @selected(old('property_type') == 'house')>Kuća</option>
+                        <option value="apartment">Stan</option>
+                        <option value="house">Kuća</option>
 
-                        <option value="commercial space" @selected(old('property_type') == 'commercial space')>
+                        <option value="commercial space">
                             Poslovni prostor
                         </option>
 
-                        <option value="construction land" @selected(old('property_type') == 'construction land')>
+                        <option value="construction land">
                             Građevinsko zemljište
                         </option>
-                        <option value="agricultural land" @selected(old('property_type') == 'agricultural land')}>
+                        <option value="agricultural land">
                             Poljoprivredno zemljište
                         </option>
-                        <option value="holiday cottage" @selected(old('property_type') == 'holiday cottage')}>
+                        <option value="holiday cottage">
                             Vikendica
                         </option>
-                        <option value="warehouse" @selected(old('property_type') == 'warehouse')>
+                        <option value="warehouse">
                             Magacin
                         </option>
                     </select>
