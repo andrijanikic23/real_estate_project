@@ -15,7 +15,7 @@
                         Prodaja
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('properties.index') }}">Svi oglasi</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties.filter', ['purpose' => 'sale']) }}">Svi oglasi</a></li>
                         <li><a class="dropdown-item" href="{{ route('properties.filter', ['purpose' => 'sale', 'property_type' => 'apartment', 'city' => 'Beograd']) }}">Stanovi u Beogradu</a></li>
                         <li><a class="dropdown-item" href="{{ route('properties.filter', ['purpose' => 'sale', 'property_type' => 'house', 'city' => 'Beograd']) }}">Kuće u Beogradu</a></li>
                         <li><a class="dropdown-item" href="{{ route('properties.filter', ['purpose' => 'sale', 'property_type' => 'construction land', 'city' => 'Beograd']) }}">Građevinsko zemljište u Beogradu</a></li>
