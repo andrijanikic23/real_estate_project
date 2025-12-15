@@ -56,4 +56,14 @@ class WelcomeHelper
 
         return "regular";
     }
+
+    public static function adType($purpose)
+    {
+        if($purpose == "sale") {
+            return "Prodaja";
+        }
+        else {
+            return "Izdavanje";
+        }
+    }
 }
