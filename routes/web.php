@@ -10,10 +10,12 @@ Route::get('/', function () {
 });
 
 
+Route::post('contact/sent', [\App\Http\Controllers\QuestionController::class, 'sent'])->name('contact.sent');
 Route::post('properties/bookmark', [PropertyController::class, 'like'])->name('properties.bookmark');
 Route::get('properties/search', [PropertyController::class, 'filter'])->name('properties.filter');
 Route::get('properties/posted', [PropertyController::class, 'posted'])->name('properties.posted')->middleware('auth');
 Route::delete('image/delete/{image}', [PropertyImageController::class, 'deleteImage'])->name('image.delete');
+Route::view('/contact', 'contact')->name('contact');
 Route::resource('properties', PropertyController::class)
     ->middlewareFor('create', 'auth');
 
