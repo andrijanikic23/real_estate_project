@@ -42,7 +42,7 @@
                 </li>
 
                 <li class="nav-item me-2">
-                    <a href="" class="nav-link fw-bold" tabindex="-1" aria-disabled="true">Kontakt</a>
+                    <a href="{{ route('contact') }}" class="nav-link fw-bold" tabindex="-1" aria-disabled="true">Kontakt</a>
                 </li>
             </ul>
         </div>
