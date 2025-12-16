@@ -55,7 +55,7 @@
                 </li>
 
                 <li class="nav-item me-2 p-2 bd-highlight">
-                    <a href="" class="nav-link fw-bold" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-bookmark"></i></a>
+                    <a href="{{ route('property.favourite') }}" class="nav-link fw-bold" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-bookmark"></i></a>
                 </li>
 
                 <li>
