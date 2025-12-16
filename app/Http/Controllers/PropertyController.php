@@ -11,7 +11,6 @@ use App\Models\UserFavouriteModel;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use function Symfony\Component\String\b;
 
 
 class PropertyController extends Controller
@@ -219,9 +218,6 @@ class PropertyController extends Controller
             return redirect()->back()->with('statusFail', 'Niste promenili nijedan podatak!');
         }
 
-
-
-
     }
 
     /**
@@ -232,5 +228,18 @@ class PropertyController extends Controller
         $property->delete();
 
         return redirect()->back();
+    }
+
+    public function bookmark()
+    {
+        $favourites = UserFavouriteModel::where('user_id', Auth::id())->select('property_id')->get();
+
+        $savedAds = [];
+
+        foreach($favourites as $favourite) {
+            $savedAds[] = PropertyModel::whereId($favourite['property_id'])->first();
+        }
+
+        return view('bookmarks', compact('savedAds'));
     }
 }
